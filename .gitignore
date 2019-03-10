@@ -1,3 +1,5 @@
 my.png
 __pycache__/
 output/
+test/
+frames_output/
