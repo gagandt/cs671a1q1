@@ -11,12 +11,11 @@ class img:
     number = 1
     angle = 0
     
-    def __init__(self, lab, leg, wid, col, ang, num):
+    def __init__(self, lab, leg, wid, ang, col):
         self.label = lab
         self.length = leg
         self.width = wid
         self.color = col
-        self.number = num
         self.angle = ang
     
     def create(self):
@@ -25,10 +24,13 @@ class img:
         
         os.chdir(self.label)
         
-        
+        self.label += "_"
             
         itr = 1
-        
+        print("N")
+        print("N")
+        print("N")
+        print("N")
         while itr < 1001:
             
             c11 = 0
@@ -41,7 +43,7 @@ class img:
                     
                     
                     #if (((c11 - c21) ** 2 + (c12 - c22) ** 2) < (self.length ** 2 - 5)):
-                    if (c21 > 28 or c22 > 28):
+                    if (c21 > 28 or c22 > 28 or c21 < 0 or c22 < 0):
                         break
                     else:
                         w, h = 28, 28
@@ -54,14 +56,17 @@ class img:
             
                         cor1 = (c11, c12)
                         cor2 = (c21, c22)
-                        
-                        d.line([cor1, cor2], fill=self.color, width=self.width)
+                        line_color = (self.color[0], self.color[1], self.color[2])
+                        d.line([cor1, cor2], fill=line_color, width=self.width)
                         im.save(self.label + str(itr)+".png")
+                        print(self.label + str(itr)+".png")
                         
                         itr += 1
                         c12 += 1
                 
                 c11 += 1
+        
+        os.chdir("..")
                         
                         
                     
