@@ -55,8 +55,7 @@ class img:
                         cor1 = (c11, c12)
                         cor2 = (c21, c22)
                         
-                        line_color = (0, 0, 255)
-                        d.line([cor1, cor2], fill=line_color, width=3)
+                        d.line([cor1, cor2], fill=self.color, width=self.width)
                         im.save(self.label + str(itr)+".png")
                         
                         itr += 1
