@@ -25,16 +25,12 @@ class img:
         
         os.chdir(self.label)
         
-        w, h = 28, 28
-        data = np.zeros((h, w, 3), dtype=np.uint8)
-        img = Image.fromarray(data, 'RGB')
-        img.save('base.png')
+        
             
         itr = 1
         
         while itr < 1001:
-            im = Image.open("base.png")
-            d = ImageDraw.Draw(im)
+            
             c11 = 0
             while (c11 <= 28 and itr < 1001):
                 c12 = 0
@@ -42,15 +38,26 @@ class img:
                     c21 = c11 + round(self.length * math.cos(self.angle))
                     c22 = c12 + round(self.length * math.sin(self.angle))
                     
-                    if (((c11 - c21) ** 2 + (c12 - c22) ** 2) < (self.length ** 2 - 5)):
+                    
+                    
+                    #if (((c11 - c21) ** 2 + (c12 - c22) ** 2) < (self.length ** 2 - 5)):
+                    if (c21 > 28 or c22 > 28):
                         break
                     else:
+                        w, h = 28, 28
+                        data = np.zeros((h, w, 3), dtype=np.uint8)
+                        im = Image.fromarray(data, 'RGB')
+                        #img.save('base.png')
+                        
+                        #im = Image.open("base.png")
+                        d = ImageDraw.Draw(im)
+            
                         cor1 = (c11, c12)
                         cor2 = (c21, c22)
                         
-                        line.color = (0, 0, 255)
+                        line_color = (0, 0, 255)
                         d.line([cor1, cor2], fill=line_color, width=3)
-                        im.save(self.label + str(itr))
+                        im.save(self.label + str(itr)+".png")
                         
                         itr += 1
                         c12 += 1
